@@ -65,4 +65,83 @@ public class VarastoTest {
         assertEquals(4, varasto.paljonkoMahtuu(), vertailuTarkkuus);
     }
 
+    @Test
+    public void uudenVarastonNegatiivinenTilavuusNollataan() {
+        varasto = new Varasto(-1);
+        assertEquals(0, varasto.getTilavuus(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void uudenSaldollisenVarastonNegatiivinenTilavuusNollataan() {
+        varasto = new Varasto(-1,1);
+        assertEquals(0, varasto.getTilavuus(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void uudenSaldollisenVarastonTilavuusOikea() {
+        varasto = new Varasto(2,1);
+        assertEquals(2, varasto.getTilavuus(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void uudenSaldollisenVarastonNegatiivinenSaldoNollataan() {
+        varasto = new Varasto(2,-1);
+        assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void uudenSaldollisenVarastonSaldoOikea() {
+        varasto = new Varasto(2,1);
+        assertEquals(1, varasto.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void uudenSaldollisenVarastonYlimaarainenSaldoJaaPois() {
+        varasto = new Varasto(2,4);
+        assertEquals(2, varasto.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void negatiivinenLisaysEiMuutaSaldoa() {
+        varasto.lisaaVarastoon(-8);
+        assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void ylimaarainenLisaysJaaPois() {
+        varasto.lisaaVarastoon(100);
+        assertEquals(10, varasto.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void negatiivinenOttoEiMuutaSaldoa() {
+        varasto.lisaaVarastoon(5);
+        varasto.otaVarastosta(-5);
+        assertEquals(5, varasto.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void negatiivinenOttoPalauttaaNollan() {
+        varasto.lisaaVarastoon(5);
+        assertEquals(0, varasto.otaVarastosta(-5), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void saldonYlittavaOttoPalauttaaSaldon() {
+        varasto.lisaaVarastoon(5);
+        assertEquals(5, varasto.otaVarastosta(100), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void saldonYlittavaOttoNollaaSaldon() {
+        varasto.lisaaVarastoon(5);
+        varasto.otaVarastosta(100);
+        assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void varastonMerkkijonoOnOikein() {
+        varasto.lisaaVarastoon(5);
+        assertEquals("saldo = 5.0, vielä tilaa 5.0", varasto.toString());
+    }
 }
