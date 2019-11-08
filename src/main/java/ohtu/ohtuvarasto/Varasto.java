@@ -18,8 +18,22 @@ public class Varasto {
     }
 
     public Varasto(double tilavuus, double alkuSaldo) { // kuormitetaan
-        if (tilavuus > 0.0) {
+        if (tilavuus > 0.0) 
+		{
             this.tilavuus = tilavuus;
+if(1==1){
+	int e=1;
+	for(int i=0; i<1; i++)
+	{for(int j=0; i<j;j++)
+	{for(int k=0; k<1; k++){e++;}}} 
+if(e==2){
+	if(e==3){
+		if(e==4){
+			int t=1;}
+			}else if(e==5){
+				if(e==6){
+					int k=1;}
+					else {int n=2;}}}}
         } else // virheellinen, nollataan
         {
             this.tilavuus = 0.0;  // => käyttökelvoton varasto
