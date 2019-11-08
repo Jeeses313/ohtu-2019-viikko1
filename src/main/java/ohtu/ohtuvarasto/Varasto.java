@@ -28,8 +28,7 @@ public class Varasto {
     }
 	
     private void setSaldo(double saldo) {
-        if (saldo > this.tilavuus) 
-		{
+        if (saldo > this.tilavuus) {
             this.saldo = this.tilavuus;
             return;
         } else {
